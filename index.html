@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tmdb Project</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+</head>
+<body>
+  <nav>
+    <div class="nav-bg">
+      <div class="nav-logo">
+        <h1 class="logo-str">MUVIC</h1>
+      </div>  
+
+      <div class="nav-category">
+        <h3>GENRE</h3>
+        <h3>THEATER</h3>
+        <h3>MUSIC</h3>
+        <h3>TRAILER</h3>
+      </div>
+      
+      <div class="search-box">
+        <input type="text">
+        <i class="fas fa-search"></i>
+      </div>
+
+      <div class="nav-toggle">
+        <label class="switch">
+          <span class="sun"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="#ffd43b"><circle r="5" cy="12" cx="12"></circle><path d="m21 13h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm-17 0h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm13.66-5.66a1 1 0 0 1 -.66-.29 1 1 0 0 1 0-1.41l.71-.71a1 1 0 1 1 1.41 1.41l-.71.71a1 1 0 0 1 -.75.29zm-12.02 12.02a1 1 0 0 1 -.71-.29 1 1 0 0 1 0-1.41l.71-.66a1 1 0 0 1 1.41 1.41l-.71.71a1 1 0 0 1 -.7.24zm6.36-14.36a1 1 0 0 1 -1-1v-1a1 1 0 0 1 2 0v1a1 1 0 0 1 -1 1zm0 17a1 1 0 0 1 -1-1v-1a1 1 0 0 1 2 0v1a1 1 0 0 1 -1 1zm-5.66-14.66a1 1 0 0 1 -.7-.29l-.71-.71a1 1 0 0 1 1.41-1.41l.71.71a1 1 0 0 1 0 1.41 1 1 0 0 1 -.71.29zm12.02 12.02a1 1 0 0 1 -.7-.29l-.66-.71a1 1 0 0 1 1.36-1.36l.71.71a1 1 0 0 1 0 1.41 1 1 0 0 1 -.71.24z"></path></g></svg></span>
+          <span class="moon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="m223.5 32c-123.5 0-223.5 100.3-223.5 224s100 224 223.5 224c60.6 0 115.5-24.2 155.8-63.4 5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6-96.9 0-175.5-78.8-175.5-176 0-65.8 36-123.1 89.3-153.3 6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"></path></svg></span>   
+          <input type="checkbox" class="input">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+  </nav>
+
+  <script>
+  
+    $('.search-box').on('click', ()=>{
+      console.log('클릭임')
+      $('input').css('visibility', 'visible')
+    })
+  </script>
+
+
+  <main style="margin-top: 70px;">
+    <div class="main-img">
+      <!-- 메인 이미지 -->
+      <!-- 타이핑 애니메이션 -->
+      <div class='typing'>
+        <span>MUVIC</span><h1 class="text"></h1>
+      </div>
+      <div class="sub-title">
+        <p>Movies and Music at the same times</p>
+      </div>
+      <div class="site-explanation">
+        <h2>Over 1000 movies and OSTs all in one place!</h2>
+        <p>Experience <span>MUVIC</span> exclusive content 
+          <br>
+          that you won't find anywheare else.
+        </p>
+      </div>
+    </div>
+    <div class="container">
+      
+        <div class="top-movies">
+          <h2>#Top 10</h2>
+          <h5>뮤빅 사용자들이 인정한 명작, 최고의 작품들을 만나보세요!</h5>
+          <div class="topMovie-list"></div>
+          <svg class="previous" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path d="M48 256a208 208 0 1 1 416 0A208 208 0 1 1 48 256zm464 0A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM217.4 376.9c4.2 4.5 10.1 7.1 16.3 7.1c12.3 0 22.3-10 22.3-22.3V304h96c17.7 0 32-14.3 32-32V240c0-17.7-14.3-32-32-32H256V150.3c0-12.3-10-22.3-22.3-22.3c-6.2 0-12.1 2.6-16.3 7.1L117.5 242.2c-3.5 3.8-5.5 8.7-5.5 13.8s2 10.1 5.5 13.8l99.9 107.1z"/>
+          </svg>
+          <svg class="next" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM294.6 135.1c-4.2-4.5-10.1-7.1-16.3-7.1C266 128 256 138 256 150.3V208H160c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h96v57.7c0 12.3 10 22.3 22.3 22.3c6.2 0 12.1-2.6 16.3-7.1l99.9-107.1c3.5-3.8 5.5-8.7 5.5-13.8s-2-10.1-5.5-13.8L294.6 135.1z"/>
+          </svg>
+        </div>
+    
+        <div class="upcoming-movies">
+          <h2>#Upcoming 10</h2>
+          <h5>곧 개봉될 영화를 미리 알아보세요!!</h5>
+          <div class="upcomingMovie-list"></div>
+          <svg class="previous" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path d="M48 256a208 208 0 1 1 416 0A208 208 0 1 1 48 256zm464 0A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM217.4 376.9c4.2 4.5 10.1 7.1 16.3 7.1c12.3 0 22.3-10 22.3-22.3V304h96c17.7 0 32-14.3 32-32V240c0-17.7-14.3-32-32-32H256V150.3c0-12.3-10-22.3-22.3-22.3c-6.2 0-12.1 2.6-16.3 7.1L117.5 242.2c-3.5 3.8-5.5 8.7-5.5 13.8s2 10.1 5.5 13.8l99.9 107.1z"/>
+          </svg>
+          <svg class="next" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM294.6 135.1c-4.2-4.5-10.1-7.1-16.3-7.1C266 128 256 138 256 150.3V208H160c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h96v57.7c0 12.3 10 22.3 22.3 22.3c6.2 0 12.1-2.6 16.3-7.1l99.9-107.1c3.5-3.8 5.5-8.7 5.5-13.8s-2-10.1-5.5-13.8L294.6 135.1z"/>
+          </svg>
+        </div>
+
+        <div class="infinite-movies">
+          <h2>#Movie</h2>
+            <h5>뮤빅의 수많은 영화와 영화음악들</h5>
+          <div class="infinite-movie-list"></div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </main>
+  <aside>
+    <div class="top-btn">
+      <a id="top-btn">TOP</a>
+    </div>
+  </aside>
+  <footer>
+    <div class="footer-box" style="width: 100%; height: 500px; background-color: lightgrey;">
+
+    </div>
+  </footer>
+  <script>
+    $(window).on('scroll', ()=>{
+      // console.log(window.scrollY)
+      if( window.scrollY > 500 ){
+        $("#top-btn").addClass("on");
+      }
+      else{
+        $("#top-btn").removeClass("on");
+      }    
+    });
+        
+    $("#top-btn").on('click', ()=>{
+      window.scrollTo({top : 0, behavior: 'smooth'}); 
+    });
+  </script>
+  <script src="./javascript/darkMode.js"></script>
+  <script src="./javascript/typing.js"></script>
+  <script src="./javascript/slider.js"></script>
+  <script src="./javascript/script.js"></script>
+  <script src="./javascript/infiniteScroll.js"></script>
+</body>
+</html>
