@@ -17,10 +17,17 @@
       </div>  
 
       <div class="nav-category">
-        <h3>GENRE</h3>
-        <h3>THEATER</h3>
-        <h3>MUSIC</h3>
-        <h3>TRAILER</h3>
+        <div class="drop">
+          <button onclick="drop-menu" class="dropdownBtn">GENRE</button>
+          <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+          </ul>
+          <button onclick="drop-menu" class="dropdownBtn">GENRE</button>
+          <button onclick="drop-menu" class="dropdownBtn">GENRE</button>
+        </div>
+      
       </div>
       
       <div class="search-box">
@@ -40,7 +47,6 @@
   </nav>
 
   <script>
-  
     $('.search-box').on('click', ()=>{
       console.log('클릭임')
       $('input').css('visibility', 'visible')
