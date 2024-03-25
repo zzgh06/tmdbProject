@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tmdb Project</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./css/navbar.css">
+  <link rel="stylesheet" href="./css/main-img.css">
+  <link rel="stylesheet" href="./css/movieList.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
@@ -16,19 +18,28 @@
         <h1 class="logo-str">MUVIC</h1>
       </div>  
 
-      <div class="nav-category">
-        <div class="drop">
-          <button onclick="drop-menu" class="dropdownBtn">GENRE</button>
-          <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-          </ul>
-          <button onclick="drop-menu" class="dropdownBtn">GENRE</button>
-          <button onclick="drop-menu" class="dropdownBtn">GENRE</button>
+      <div class="dropdown">
+        <button class="dropbtn">GENRE</button>
+        <div id="myDropdown" class="dropdown-content">
+          <a href="#">Link 1</a>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
         </div>
-      
       </div>
+
+      <script>
+        $(".dropbtn").click(()=>{
+          $(".dropdown-content").toggle('show')
+        })
+        
+        // 다른 곳을 클릭하면 드롭다운 메뉴를 숨깁니다.
+        $(document).click(function(event){
+          var $target = $(event.target);
+          if(!$target.closest('.dropdown').length){
+            $(".dropdown-content").hide();
+          }        
+        });
+      </script>
       
       <div class="search-box">
         <input type="text">
@@ -84,7 +95,13 @@
           <svg class="next" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
             <path d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM294.6 135.1c-4.2-4.5-10.1-7.1-16.3-7.1C266 128 256 138 256 150.3V208H160c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h96v57.7c0 12.3 10 22.3 22.3 22.3c6.2 0 12.1-2.6 16.3-7.1l99.9-107.1c3.5-3.8 5.5-8.7 5.5-13.8s-2-10.1-5.5-13.8L294.6 135.1z"/>
           </svg>
+
+          <div class="progress-dots">
+            <div class="dot active"></div>
+            <div class="dot"></div>
+          </div>
         </div>
+
     
         <div class="upcoming-movies">
           <h2>#Upcoming 10</h2>
@@ -96,6 +113,11 @@
           <svg class="next" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
             <path d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM294.6 135.1c-4.2-4.5-10.1-7.1-16.3-7.1C266 128 256 138 256 150.3V208H160c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h96v57.7c0 12.3 10 22.3 22.3 22.3c6.2 0 12.1-2.6 16.3-7.1l99.9-107.1c3.5-3.8 5.5-8.7 5.5-13.8s-2-10.1-5.5-13.8L294.6 135.1z"/>
           </svg>
+
+          <div class="progress-dots">
+            <div class="dot active"></div>
+            <div class="dot"></div>
+          </div>
         </div>
 
         <div class="infinite-movies">

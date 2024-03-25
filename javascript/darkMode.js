@@ -7,6 +7,6 @@ $('.input').on('click', () => {
     $('.nav-bg').css('background-color', '#333333');
   } else {
     $('body').removeClass('dark-bg');
-    $('.nav-bg').css('background-color', '#FFFFFF);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ')
+    $('.nav-bg').css('background-color', '#FFFFFF');
   }
 })
