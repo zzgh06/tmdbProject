@@ -14,40 +14,36 @@
 <body>
   <nav>
     <div class="nav-bg">
-      
-      <a href="#"><h1 class="logo-str">MUVIC</h1></a>
-     
-
-      <div class="dropdown-container">
-        <button class="dropbtn">GENRE</button>
-        <div id="genreDropdown" class="dropdown-content">
-          <a href="#">Action</a>
-          <a href="#">Comedy</a>
-          <a href="#">Drama</a>
-          <a href="#">Romance</a>
-          <a href="#">Thriller</a>
+      <div class="nav-menu">
+        <a href="#"><h1 class="logo-str">MUVIC</h1></a>
+        <div class="dropdown-container">
+          <button class="dropbtn">GENRE</button>
+          <div id="genreDropdown" class="dropdown-content">
+            <a href="#">Action</a>
+            <a href="#">Comedy</a>
+            <a href="#">Drama</a>
+            <a href="#">Romance</a>
+            <a href="#">Thriller</a>
+          </div>
         </div>
-      </div>
-      
-      <div class="dropdown-container">
-        <button class="dropbtn">THEATER</button>
-        <div id="theaterDropdown" class="dropdown-content">
-          <a href="#">Rating</a>
-          <a href="#">Popularity</a>
-          <a href="#">Location</a>
+        <div class="dropdown-container">
+          <button class="dropbtn">THEATER</button>
+          <div id="theaterDropdown" class="dropdown-content">
+            <a href="#">Rating</a>
+            <a href="#">Popularity</a>
+            <a href="#">Location</a>
+          </div>
         </div>
-      </div>
-      
-      <div class="dropdown-container">
-        <button class="dropbtn">MUSIC</button>
-        <div id="musicDropdown" class="dropdown-content">
-          <a href="#">Artist</a>
-          <a href="#">Album</a>
-          <a href="#">OST</a>
+        <div class="dropdown-container">
+          <button class="dropbtn">MUSIC</button>
+          <div id="musicDropdown" class="dropdown-content">
+            <a href="#">Artist</a>
+            <a href="#">Album</a>
+            <a href="#">OST</a>
+          </div>
         </div>
+        <a class="trailer-link" href="#">TRAILER</a>
       </div>
-      
-      <a class="trailer-link" href="#">TRAILER</a>
 
       <div class="nav-toggle">
         <i class="fas fa-search"></i>
@@ -61,15 +57,19 @@
     </div>
   </nav>
 
+  <div class="search-modal">
+    <div class="search-modal-content">
+      <h1>fdfd</h1>
+    </div>
+  </div>
+
   <script>
-    $('.search-box').on('click', ()=>{
-      console.log('클릭임')
-      $('input').css('visibility', 'visible')
+    document.querySelector('.fa-search').addEventListener('click', ()=>{
+      document.querySelector('.search-modal').classList.toggle('show')
     })
   </script>
 
-
-  <main style="margin-top: 70px;">
+  <main style="margin-top: 100px;">
     <div class="main-img">
       <!-- 메인 이미지 -->
       <!-- 타이핑 애니메이션 -->
