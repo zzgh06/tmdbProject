@@ -15,29 +15,63 @@
   <nav>
     <div class="nav-bg">
       <div class="nav-logo">
-        <h1 class="logo-str">MUVIC</h1>
+        <a href="#"><h1 class="logo-str">MUVIC</h1></a>
       </div>  
 
       <div class="dropdown">
         <button class="dropbtn">GENRE</button>
         <div id="myDropdown" class="dropdown-content">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
+          <a href="#">Action</a>
+          <a href="#">Comedy</a>
+          <a href="#">Drama</a>
+          <a href="#">Romance</a>
+          <a href="#">Thriller</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">THEATER</button>
+        <div id="myDropdown" class="dropdown-content">
+          <a href="#">Rating</a>
+          <a href="#">Popularity</a>
+          <a href="#">Location</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">MUSIC</button>
+        <div id="myDropdown" class="dropdown-content">
+          <a href="#">Artist</a>
+          <a href="#">Album</a>
+          <a href="#">OST</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">TRAILER</button>
+        <div id="myDropdown" class="dropdown-content">
+          <a href="#">Action</a>
+          <a href="#">Comedy</a>
+          <a href="#">Drama</a>
+          <a href="#">Romance</a>
+          <a href="#">Thriller</a>
         </div>
       </div>
 
       <script>
-        $(".dropbtn").click(()=>{
-          $(".dropdown-content").toggle('show')
-        })
-        
-        // 다른 곳을 클릭하면 드롭다운 메뉴를 숨깁니다.
-        $(document).click(function(event){
-          var $target = $(event.target);
-          if(!$target.closest('.dropdown').length){
-            $(".dropdown-content").hide();
-          }        
+        document.querySelectorAll('.dropbtn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            document.querySelector('.dropdown-content').classList.toggle('show');
+          });
+
+          btn.addEventListener('mouseover', ()=>{
+            document.querySelector('.dropdown-content').classList.add('show');
+          });
+        });
+
+        document.addEventListener('click', (event) => {
+          const target = event.target;
+          const dropdown = document.querySelector('.dropdown-content');
+          if (!target.closest('.dropdown') && !dropdown.contains(target)) {
+            dropdown.classList.remove('show');
+          }
         });
       </script>
       
