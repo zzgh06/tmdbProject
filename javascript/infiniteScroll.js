@@ -11,7 +11,7 @@ window.addEventListener('scroll', function() {
     fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-kr&page=${num + 1}&sort_by=popularity.desc`, options)
       .then(response => response.json())
       .then(data => {
-        movies = data.results.slice(0, 8);
+        movies = data.results.slice(0, 16);
         console.log('영화리스트 : ', movies);
         무한생성(movies);
       })

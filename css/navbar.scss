@@ -1,32 +1,3 @@
-.dark-bg {
-  background: #333333;
-  color: white;
-}
-
-.nav-bg {
-  position: fixed;
-  display: flex;
-  z-index: 99;
-  top: 0;
-  width: 100%;
-  height: 100px;
-  align-items: center;
-  background-color: #FFFFFF;
-  h1 {
-    margin: 0 30px;
-    color: purple;
-    font-size: 50px;
-    font-weight: 900;
-  }
-}
-
-.nav-category {
-  display: flex;
-  padding: 10px;
-  font-size: 20px;
-  margin-right: 20px;
-}
-
 /* Dropdown Button */
 @mixin dropBtn($height) {
   background-color: white;
@@ -37,6 +8,35 @@
   font-weight: 600;
   border: none;
   cursor: pointer;
+}
+
+.dark-bg {
+  background: #333333;
+  color: white;
+}
+
+.nav-bg {
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  background-color: #FFFFFF;
+  h1 {
+    margin: 0 30px;
+    color: purple;
+    font-size: 50px;
+    font-weight: 900;
+  }
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
 }
 
 .dropbtn {
@@ -80,8 +80,7 @@
 
 
 .nav-toggle {
-  position: absolute;
-  right: 100px;
+  margin-right: 50px;
 }
 
 .switch {
@@ -92,10 +91,12 @@
   height: 34px;
 }
 
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
+.switch {
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
 }
 
 .slider {
@@ -123,28 +124,16 @@
 }
 
 
-.sun svg {
-  position: absolute;
-  top: 6px;
-  left: 36px;
-  z-index: 1;
-  width: 24px;
-  height: 24px;
-}
-
-.moon svg {
-  fill: #73C0FC;
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  z-index: 1;
-  width: 24px;
-  height: 24px;
-}
-
-/* .switch:hover */
-.sun svg {
-  animation: rotate 15s linear infinite;
+.sun {
+  svg {
+    position: absolute;
+    top: 6px;
+    left: 36px;
+    z-index: 1;
+    width: 24px;
+    height: 24px;
+    animation: rotate 15s linear infinite;
+  }
 }
 
 @keyframes rotate {
@@ -158,9 +147,17 @@
   }
 }
 
-/* .switch:hover */
-.moon svg {
-  animation: tilt 5s linear infinite;
+.moon {
+  svg {
+    fill: #73C0FC;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 1;
+    width: 24px;
+    height: 24px;
+    animation: tilt 5s linear infinite;
+  }
 }
 
 @keyframes tilt {
@@ -192,4 +189,32 @@
 
 .input:checked + .slider:before {
   transform: translateX(35px);
+}
+
+.search-modal {
+  position: fixed;
+  top: 100px; /* 네비게이션 바 아래에 위치하도록 조정 */
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 반투명한 배경 */
+  z-index: 1000; /* 네비게이션 바 위에 표시되도록 z-index 설정 */
+  display: none; /* 초기에는 숨김 */
+}
+
+.search-modal.show {
+  display: block; /* 검색 모달이 활성화되면 표시 */
+}
+
+/* 검색 모달 내용 스타일링 */
+.search-modal-content {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  width: 80%;
+  min-width: 400px;
+  padding: 20px;
+  border-radius: 10px;
 }
