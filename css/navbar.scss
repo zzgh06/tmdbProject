@@ -5,11 +5,10 @@
 
 .nav-bg {
   position: fixed;
+  display: flex;
   z-index: 99;
   top: 0;
   width: 100%;
-  display: flex;
-  flex-grow: 1;
   height: 100px;
   align-items: center;
   background-color: #FFFFFF;
@@ -29,19 +28,23 @@
 }
 
 /* Dropdown Button */
-.dropdown {
-  position: relative;
-}
-
-.dropbtn {
+@mixin dropBtn($height) {
   background-color: white;
   color: black;
   padding: 20px;
   font-size: 27px;
-  line-height: 3.6rem;
+  line-height: $height;
   font-weight: 600;
   border: none;
   cursor: pointer;
+}
+
+.dropbtn {
+  @include dropBtn(3.6rem)
+}
+
+.trailer-link {
+  @include dropBtn(3.6rem)
 }
 
 
@@ -49,56 +52,33 @@
 .dropdown-content {
   display: none;
   position: absolute;
-  left: 0;
   background-color: #ffffff;
-  min-width: 135px;
+  min-width: 160px;
   border-radius: 10px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
 
-/* Links inside the dropdown */
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  text-align: center;
-  display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-  font-weight: 600;
-  transform: scale(1.1);
-  transition: all 0.1s;
+.dropdown-content {
+  a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    &:hover {
+      font-weight: 600;
+      transform: scale(1.1);
+      transition: all 0.1s;
+    }
+  }
 }
 
 .show {
   display: block;
 }
 
-.search-box {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  right: 220px;
-  font-size: 25px;
-  input {
-    width: 200px;
-    height: 35px;
-    margin-right: 15px;
-    visibility: hidden;
-    transition: all 0.7s;
-    border-radius: 50px;
-    &:focus {
-      width: 250px;
-    }
-  }
-  input[type="text" i] {
-    padding-inline-start: 15px;
-  }
-}
+
 .nav-toggle {
   position: absolute;
   right: 100px;
