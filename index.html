@@ -59,14 +59,66 @@
 
   <div class="search-modal">
     <div class="search-modal-content">
-      <h1>fdfd</h1>
+      <div class="search-box">
+        <input id="user-search" type="text" placeholder="제목을 입력하세요">
+        <button class="clear-search"><i class="fas fa-times"></i></button> <!-- 검색어 클리어 버튼 -->
+        <button class="search-button"><i class="fas fa-search"></i></button>
+      </div>
+    </div>
+    <div class="search-results">
+      <!-- 여기에 검색 결과를 표시할 영역 -->
+    </div>
+    <div class="wrap">
+      <div class="rolling-movie-list1"></div>
+    </div>
+    <div class="wrap">
+      <div class="rolling-movie-list2"></div>
     </div>
   </div>
 
   <script>
     document.querySelector('.fa-search').addEventListener('click', ()=>{
-      document.querySelector('.search-modal').classList.toggle('show')
-    })
+      document.querySelector('.search-modal').classList.toggle('open');
+    });
+
+    // let rollerLeft = document.querySelector('.rolling-movie-list1');
+    // rollerLeft.id = 'roller1'; // 아이디 부여
+    
+    // let clone1 = rollerLeft.cloneNode(true);
+    // // 기본값은 false. 자식 노드까지 복제 할 경우 true
+    // clone1.id = 'roller2';
+    // document.querySelectorAll('.wrap')[0].appendChild(clone1);
+
+    // rollerLeft.classList.add('original');
+    // clone1.classList.add('clone');
+
+    // // --------------------------------------------------------- 
+
+    // let rollerRight = document.querySelector('.rolling-movie-list2');
+    // rollerRight.id = 'roller3';
+
+    // let clone2 = rollerRight.cloneNode(true);
+    // clone1.id = 'roller4';
+    // document.querySelectorAll('.wrap')[1].appendChild(clone2);
+
+    // rollerRight.classList.add('original');
+    // clone2.classList.add('clone');
+    function createRollingMovieList(originalSelector, cloneSelector, wrapIndex) {
+        const original = document.querySelector(originalSelector);
+        original.id = 'roller' + wrapIndex;
+
+        const clone = original.cloneNode(true);
+        clone.id = 'roller' + (wrapIndex + 1);
+        document.querySelectorAll('.wrap')[wrapIndex].appendChild(clone);
+
+        original.classList.add('original');
+        clone.classList.add('clone');
+    }
+
+    createRollingMovieList('.rolling-movie-list1', '.wrap', 0);
+    createRollingMovieList('.rolling-movie-list2', '.wrap', 1);
+
+    function searchFilter(){}
   </script>
 
   <main style="margin-top: 100px;">
@@ -158,6 +210,7 @@
       window.scrollTo({top : 0, behavior: 'smooth'}); 
     });
   </script>
+  <script src="./data.js"></script>
   <script src="./javascript/navbar.js"></script>
   <script src="./javascript/darkMode.js"></script>
   <script src="./javascript/typing.js"></script>

@@ -17,20 +17,26 @@ const fetchUpcomingMovies = fetch('https://api.themoviedb.org/3/movie/upcoming?l
   .then(response => response.json())
   .then(data => data.results.slice(0, 10));
 
-const fetchMovies = fetch('https://api.themoviedb.org/3/movie/top_rated?language=ko-kr&page=5', options)
+const fetchMovies1 = fetch('https://api.themoviedb.org/3/movie/top_rated?language=ko-kr&page=5', options)
+  .then(response => response.json())
+  .then(data => data.results.slice(0, 16));
+
+const fetchMovies2 = fetch('https://api.themoviedb.org/3/movie/top_rated?language=ko-kr&page=8', options)
   .then(response => response.json())
   .then(data => data.results.slice(0, 16));
 
 // Promise.all()을 사용하여 모든 fetch 요청을 동시에 보내고 결과를 받아옵니다.
-Promise.all([fetchTopMovies, fetchUpcomingMovies, fetchMovies])
-  .then(([topMovies, upcomingMovies, movies]) => {
+Promise.all([fetchTopMovies, fetchUpcomingMovies, fetchMovies1, fetchMovies2])
+  .then(([topMovies, upcomingMovies, movies1, movies2]) => {
     // 결과를 이용하여 작업을 수행합니다.
-    console.log('탑 무비 : ', topMovies);
-    console.log('개봉예정 : ', upcomingMovies);
-    console.log('영화리스트 : ', movies);
+    // console.log('탑 무비 : ', topMovies);
+    // console.log('개봉예정 : ', upcomingMovies);
+    // console.log('영화리스트 : ', movies1);
     영화생성1(topMovies); 
     영화생성2(upcomingMovies);
-    영화생성3(movies);
+    영화생성3(movies1);
+    영화생성4(movies1);
+    영화생성5(movies2)
   })
   .catch(err => console.error(err));
 
@@ -60,3 +66,22 @@ function 영화생성3(data) {
   );
   $('.infinite-movie-list').append(infiniteMovies);
 }
+
+function 영화생성4(data) {
+  let rollingMovies = data.map(movie =>
+    `<div class="rolling-movie-card">
+      <img src="${baseImageUrl + movie.poster_path}" alt="">
+    </div>`
+  );
+  $('.rolling-movie-list1').append(rollingMovies);
+}
+
+function 영화생성5(data) {
+  let rollingMovies = data.map(movie =>
+    `<div class="rolling-movie-card">
+      <img src="${baseImageUrl + movie.poster_path}" alt="">
+    </div>`
+  );
+  $('.rolling-movie-list2').append(rollingMovies);
+}
+
