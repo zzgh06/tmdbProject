@@ -85,3 +85,7 @@ function 영화생성5(data) {
   $('.rolling-movie-list2').append(rollingMovies);
 }
 
+fetch('https://api.themoviedb.org/3/genre/movie/list?language=ko-kr', options)
+  .then(response => response.json())
+  .then(response => console.log(response))
+  .catch(err => console.error(err));

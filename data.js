@@ -7,7 +7,7 @@ async function fetchAllMovies() {
     let page = 1;
     let totalPages = 1;
 
-    while (page <= totalPages && page <= 150) {
+    while (page <= totalPages && page <= 100) {
         const response = await fetch(`${baseUrl}?api_key=${apiKey}&language=${language}&page=${page}`);
         const data = await response.json();
 
@@ -19,65 +19,73 @@ async function fetchAllMovies() {
     return allMovies;
 }
 
-
-$(document).ready(function() {
+document.addEventListener('DOMContentLoaded', () => {
   // 검색어 클리어 버튼에 대한 클릭 이벤트 처리
-  $('.clear-search').click(function() {
-      $('#user-search').val(''); // 검색어 입력창 내용을 비움
-      $('.search-results').html(''); // 검색 결과를 비움
-      $('.wrap').show(); // rolling 부분을 다시 보이게 함
-  });
+  document.querySelector('.clear-search').addEventListener('click', clearSearch);
 
   fetchAllMovies()
-    .then(allMovies => {
-        $('.search-button').click(function() {
-            const userSearch = $('#user-search').val().toLowerCase(); // 사용자 입력 검색어
-            const filteredMovies = allMovies.filter(movie => {
-                return movie.title.toLowerCase().includes(userSearch);
-            });
-
-            if (userSearch === '') {
-                // 검색어가 비어있는 경우 모달 창으로 되돌리기
-                $('.wrap').show(); // 모달 창 보이기
-                $('.search-results').hide(); // 검색 결과 숨기기
-            } else {
-                // 검색어가 있는 경우 검색 결과를 표시
-                displaySearchResults(filteredMovies);
-                $('.wrap').hide(); // rolling 부분 숨기기
-                $('.search-results').show(); // 검색 결과 보이기
-            }
-        });
-
-        // 검색어 입력란에서 포커스를 잃을 때 검색 결과를 초기화하여 모달 창으로 되돌림
-        $('#user-search').blur(function() {
-            const userSearch = $(this).val().trim().toLowerCase();
-            if (userSearch === '') {
-                $('.wrap').show(); // 모달 창 보이기
-                $('.search-results').hide(); // 검색 결과 숨기기
-            }
-        });
-    })
-    .catch(error => console.error('Error fetching movie data:', error));
-
-  function displaySearchResults(movies) {
-      const $target = $('.search-results');
-      $target.html(''); // 영화 목록을 초기화
-
-      // 만약 검색어와 일치하는 영화가 없는 경우
-      if (movies.length === 0) {
-          $target.append(`<h1>죄송합니다. 일치하는 영화가 존재하지 않습니다 😅</h1>`);
-      } else {
-          // 검색어와 일치하는 영화가 있는 경우
-          movies.forEach(movie => {
-              // 검색 결과를 화면에 추가
-              let movieCard = `
-                  <div class="movie-card">
-                      <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title} Poster">
-                      <h3>${movie.title}</h3>
-                  </div>
-              `;
-              $target.append(movieCard);
+      .then(function(allMovies) {
+          // 검색 버튼에 대한 클릭 이벤트 처리
+          document.querySelector('.search-button').addEventListener('click', () => {
+              var userSearch = document.getElementById('user-search').value.trim(); // 사용자 입력 검색어
+              handleSearch(userSearch, allMovies);
           });
-      }
-  }
+      })
+      .catch(function(error) {
+          console.error('Error fetching movie data:', error);
+      });
 });
+
+// 검색어 클리어 함수
+function clearSearch() {
+  document.getElementById('user-search').value = ''; // 검색어 입력창 내용을 비움
+  document.querySelector('.search-results').innerHTML = ''; // 검색 결과를 비움
+  document.querySelectorAll('.wrap').forEach((wrap) => {
+      wrap.style.visibility = 'visible'; // rolling 부분을 다시 보이게 함
+  });
+  document.querySelector('.search-results').style.visibility = 'hidden';
+}
+
+// 검색 처리 함수
+function handleSearch(userSearch, allMovies) {
+  if (userSearch === '') {
+      // 검색어가 비어있는 경우 모달 창으로 되돌리기
+      document.querySelectorAll('.wrap').forEach((wrap) => {
+          wrap.style.visibility = 'visible';
+      });
+      document.querySelector('.search-results').style.visibility = 'hidden';
+  } else {
+      // 검색어가 있는 경우 검색 결과를 표시
+      var filteredMovies = allMovies.filter((movie) => {
+          return movie.title.includes(userSearch);
+      });
+      displaySearchResults(filteredMovies);
+      document.querySelectorAll('.wrap').forEach((wrap) => {
+          wrap.style.visibility = 'hidden';
+      });
+      document.querySelector('.search-results').style.visibility = 'visible';
+  }
+}
+
+
+// 검색 결과를 표시하는 함수
+function displaySearchResults(movies) {
+  var target = document.querySelector('.search-results');
+  target.innerHTML = '';
+
+  // 만약 검색어와 일치하는 영화가 없는 경우
+  if (movies.length === 0) {
+      target.innerHTML = '<h1>죄송합니다. 일치하는 영화가 존재하지 않습니다 😅</h1>';
+  } else {
+      // 검색어와 일치하는 영화가 있는 경우
+      movies.forEach(function(movie) {
+          var movieCard = `
+              <div class="movie-card">
+                  <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title} Poster">
+                  <h3>${movie.title}</h3>
+              </div>
+          `;
+          target.innerHTML += movieCard;
+      });
+  }
+}

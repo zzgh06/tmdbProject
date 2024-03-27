@@ -1,5 +1,5 @@
 document.querySelectorAll('.dropdown-container').forEach(container => {
-  const button = container.querySelector('.dropbtn');
+  const button = container.querySelector('.dropBtn');
   const dropdownContent = container.querySelector('.dropdown-content');
 
   button.addEventListener('click', () => {
