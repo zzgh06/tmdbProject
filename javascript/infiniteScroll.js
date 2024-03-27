@@ -17,7 +17,7 @@ window.addEventListener('scroll', function() {
       })
       .catch(err => console.error(err));
     num += 1;
-    if (num === 32) {
+    if (num === 1000) {
       alertDisplayed = true;
     }
   }

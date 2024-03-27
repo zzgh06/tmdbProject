@@ -114,7 +114,7 @@
   height: 30px;
   width: 30px;
   border-radius: 20px;
-  left: 2px;
+  left: 0;
   bottom: 2px;
   z-index: 2;
   background-color: #e8e8e8;
@@ -177,29 +177,156 @@
 }
 
 .search-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
   position: fixed;
-  top: 100px; /* 네비게이션 바 아래에 위치하도록 조정 */
+  top: 100px;
   left: 0;
   width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* 반투명한 배경 */
+  height: 0;
+  background-color: white; /* 반투명한 배경 */
   z-index: 1000; /* 네비게이션 바 위에 표시되도록 z-index 설정 */
-  display: none; /* 초기에는 숨김 */
+  opacity: 0.5;
+  transition: all 0.8s;
+  overflow: hidden;
 }
-
-.search-modal.show {
-  display: block; /* 검색 모달이 활성화되면 표시 */
+.search-modal.open {
+  opacity: 1;
+  height: 550px;
 }
 
 /* 검색 모달 내용 스타일링 */
 .search-modal-content {
   position: absolute;
-  top: 25%;
+  top: 5%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
+  transform: translateX(-50%);
   width: 80%;
   min-width: 400px;
-  padding: 20px;
-  border-radius: 10px;
+  margin: 0 auto;
+}
+
+.search-box {
+  display: flex;
+  justify-content: center;
+}
+.search-box input[type=text] {
+  width: 50%;
+  height: 45px;
+  padding-inline-start: 15px;
+  border-top-left-radius: 0.5em;
+  border-bottom-left-radius: 0.5em;
+  border: 2px solid lightgray;
+  border-right: none;
+}
+.search-box input[type=text]:focus {
+  outline: none;
+  border-right: 2px solid lightgray;
+}
+.search-box .search-button {
+  background-color: white;
+  padding: 0 25px;
+  border-top-right-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  border: 2px solid lightgray;
+  border-left: none;
+}
+.search-box .search-button:hover {
+  background-color: #73C0FC;
+  color: white;
+}
+.search-box .search-button:active {
+  border: 2px solid blue;
+}
+
+.wrap {
+  display: flex;
+  overflow: hidden;
+  align-items: end;
+  padding-bottom: 10px;
+}
+
+.rolling-movie-list1, .rolling-movie-list2 {
+  display: flex;
+}
+
+.rolling-movie-card {
+  width: 150px;
+  height: 200px;
+  margin-right: 10px;
+  overflow: hidden;
+  border-radius: 15px;
+}
+.rolling-movie-card img {
+  width: 100%;
+}
+
+@keyframes rolling1 {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-100%);
+  }
+  50.01% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes rolling2 {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-200%);
+  }
+}
+.rolling-movie-list1.original {
+  animation: rolling1 60s linear infinite;
+}
+
+.rolling-movie-list1.clone {
+  animation: rolling2 60s linear infinite;
+}
+
+.rolling-movie-list2.original {
+  animation: rolling1 60s linear infinite reverse;
+}
+
+.rolling-movie-list2.clone {
+  animation: rolling2 60s linear infinite reverse;
+}
+
+.search-results {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.movie-card {
+  margin-right: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.movie-card img {
+  width: 100%;
+  max-height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 5px;
+}
+
+.movie-card h3 {
+  margin: 0 auto;
+  font-size: 18px;
+  color: #333;
+  text-align: center;
 }/*# sourceMappingURL=navbar.css.map */
