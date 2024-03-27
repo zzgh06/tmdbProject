@@ -39,7 +39,7 @@
   align-items: center;
 }
 
-.dropbtn {
+.dropBtn {
   @include dropBtn(3.6rem)
 }
 
@@ -80,7 +80,13 @@
 
 
 .nav-toggle {
+  display: flex;
+  align-items: center;
   margin-right: 50px;
+  .fa-search {
+    font-size: 20px;
+    margin: 0 25px;
+  }
 }
 
 .switch {
@@ -115,7 +121,7 @@
     height: 30px;
     width: 30px;
     border-radius: 20px;
-    left: 0;
+    left: 2px;
     bottom: 2px;
     z-index: 2;
     background-color: #e8e8e8;
@@ -188,7 +194,7 @@
 }
 
 .input:checked + .slider:before {
-  transform: translateX(35px);
+  transform: translateX(30px);
 }
 
 .search-modal {
@@ -237,8 +243,19 @@
     border-right: none;
     &:focus {
       outline: none;
-      border-right: 2px solid lightgray;
     } 
+  }
+  .clear-search {
+    font-size: large;
+    padding: 0 25px;
+    background-color: white;
+    border: none;
+    border-top: 2px solid lightgray;
+    border-right: 2px solid lightgrey;
+    border-bottom: 2px solid lightgray;
+    &:active {
+      font-size: medium;
+    }
   }
   .search-button {
     background-color: white;
@@ -315,6 +332,8 @@
 }
 
 .movie-card {
+  width: 250px;
+  margin-top: 100px;
   margin-right: 20px;
   padding: 10px;
   border: 1px solid #ddd;
@@ -332,7 +351,7 @@
 
 .movie-card h3 {
   margin: 0 auto;
-  font-size: 18px;
+  font-size: 20px;
   color: #333;
   text-align: center;
 }
